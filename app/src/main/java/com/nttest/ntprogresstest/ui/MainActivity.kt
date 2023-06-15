@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         rvDeals.layoutManager = LinearLayoutManager(this)
         rvDeals.adapter = adapter
 
-        Toast.makeText(applicationContext, "Realtime loading slows down sorting, that's why I used 'starter pack' (10 packs).", Toast.LENGTH_LONG).show()
+        //Toast.makeText(applicationContext, "One-by-one adding packs to screen slows down sorting during loading, that's why I load 100 packs per time.", Toast.LENGTH_LONG).show()
 
         tvSortByTime.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnDateClicked)

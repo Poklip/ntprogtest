@@ -24,11 +24,11 @@ class DealsPack {
         return packsList[index]
     }
 
-    fun getAllPacks(): List<Server.Deal> {
+/*    fun getAllPacks(): List<Server.Deal> {
         val allPacks = mutableListOf<Server.Deal>()
         for (pack in packsList) {
             allPacks += pack
         }
         return allPacks
-    }
+    }*/
 }
