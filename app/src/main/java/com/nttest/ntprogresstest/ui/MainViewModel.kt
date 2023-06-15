@@ -1,10 +1,14 @@
-package com.nttest.ntprogresstest
+package com.nttest.ntprogresstest.ui
 
+import android.util.Log
 import com.nttest.ntprogresstest.base.BaseViewModel
 import com.nttest.ntprogresstest.base.MyEvent
+import com.nttest.ntprogresstest.data.Server
+import com.nttest.ntprogresstest.domain.DealsPack
 
 class MainViewModel : BaseViewModel<ViewState>() {
 
+    private val dealsPack = DealsPack()
     private val server = Server()
     private var dateSortBy = true
     private var instrumentSortBy = true
@@ -13,9 +17,8 @@ class MainViewModel : BaseViewModel<ViewState>() {
     private var sideSortBy = true
 
     init {
-        processUiEvent(DataEvent.InitLoadDeals)
+        processDataEvent(DataEvent.InitLoadDeals)
     }
-
 
     override fun initialViewState() = ViewState(dealsShown = emptyList(), deals = emptyList())
 
@@ -23,12 +26,19 @@ class MainViewModel : BaseViewModel<ViewState>() {
         when (event) {
             is DataEvent.InitLoadDeals -> {
                 server.subscribeToDeals {
-                    processDataEvent(DataEvent.LoadDeals(it))
+                    dealsPack.addPack(it)
+                    if (dealsPack.getSize() == 10) {
+                        processDataEvent(DataEvent.LoadPacks(dealsPack.getPacks(10)))
+                    }
+                    Log.e("MAINDEBUG", "${dealsPack.getSize()}")
+                    if (dealsPack.getSize() >= 1001) {
+                        processDataEvent(DataEvent.LoadPacks(dealsPack.getAllPacks()))
+                    }
                 }
                 return null
             }
 
-            is DataEvent.LoadDeals -> {
+            is DataEvent.LoadPacks -> {
                 return previousState.copy(dealsShown = event.deals.sortedBy { it.timeStamp })
             }
 

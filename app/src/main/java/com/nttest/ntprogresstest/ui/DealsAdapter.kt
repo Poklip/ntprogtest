@@ -1,4 +1,4 @@
-package com.nttest.ntprogresstest
+package com.nttest.ntprogresstest.ui
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nttest.ntprogresstest.R
+import com.nttest.ntprogresstest.data.Server
 import kotlin.math.roundToInt
 
 class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
@@ -51,6 +53,7 @@ class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
         } else {
             viewHolder.tvPrice.setTextColor(Color.parseColor("#00FF00"))
         }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
