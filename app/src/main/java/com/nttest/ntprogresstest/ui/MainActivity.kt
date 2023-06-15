@@ -2,7 +2,6 @@ package com.nttest.ntprogresstest.ui
 
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,8 +25,6 @@ class MainActivity : AppCompatActivity() {
         rvDeals.layoutManager = LinearLayoutManager(this)
         rvDeals.adapter = adapter
 
-        //Toast.makeText(applicationContext, "One-by-one adding packs to screen slows down sorting during loading, that's why I load 100 packs per time.", Toast.LENGTH_LONG).show()
-
         tvSortByTime.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnDateClicked)
         }
@@ -43,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         tvSortBySide.setOnClickListener {
             viewModel.processUiEvent(UiEvent.OnSideClicked)
         }
-
 
     }
 

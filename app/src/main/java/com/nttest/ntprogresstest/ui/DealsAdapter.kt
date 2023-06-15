@@ -29,21 +29,15 @@ class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
         }
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_deal, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // viewHolder.itemView.setOnClickListener{}
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         viewHolder.tvInstrumentName.text = dealsData[position].instrumentName
         viewHolder.tvPrice.text = "%.2f".format(dealsData[position].price.toFloat())
         viewHolder.tvAmount.text = dealsData[position].amount.roundToInt().toString()
@@ -56,12 +50,10 @@ class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dealsData.size
 
     fun setData(deals: List<Server.Deal>) {
         dealsData = deals
         notifyDataSetChanged()
     }
-
 }

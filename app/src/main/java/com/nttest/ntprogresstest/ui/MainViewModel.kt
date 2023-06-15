@@ -115,5 +115,4 @@ class MainViewModel : BaseViewModel<ViewState>() {
             else -> return null
         }
     }
-
 }
