@@ -4,7 +4,6 @@ import com.nttest.ntprogresstest.base.MyEvent
 import com.nttest.ntprogresstest.data.Server
 
 data class ViewState(
-    val dealsShown: List<Server.Deal>,
     val deals: List<Server.Deal>
 )
 

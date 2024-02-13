@@ -22,7 +22,7 @@ class MainViewModel : BaseViewModel<ViewState>() {
         processDataEvent(DataEvent.InitLoadDeals)
     }
 
-    override fun initialViewState() = ViewState(dealsShown = emptyList(), deals = emptyList())
+    override fun initialViewState() = ViewState(deals = emptyList())
 
     override fun reduce(event: MyEvent, previousState: ViewState): ViewState? {
         when (event) {
@@ -39,16 +39,16 @@ class MainViewModel : BaseViewModel<ViewState>() {
 
             is DataEvent.LoadPacks -> {
                 return when (sortOwner) {
-                    SortDirection.TimeUp -> previousState.copy(dealsShown = event.deals.sortedBy { it.timeStamp })
-                    SortDirection.TimeDown -> previousState.copy(dealsShown = event.deals.sortedByDescending { it.timeStamp })
-                    SortDirection.InstrumentUp -> previousState.copy(dealsShown = event.deals.sortedBy { it.instrumentName })
-                    SortDirection.InstrumentDown -> previousState.copy(dealsShown = event.deals.sortedByDescending { it.instrumentName })
-                    SortDirection.PriceUp -> previousState.copy(dealsShown = event.deals.sortedBy { it.price })
-                    SortDirection.PriceDown -> previousState.copy(dealsShown = event.deals.sortedByDescending { it.price })
-                    SortDirection.AmountUp -> previousState.copy(dealsShown = event.deals.sortedBy { it.amount })
-                    SortDirection.AmountDown -> previousState.copy(dealsShown = event.deals.sortedByDescending { it.amount })
-                    SortDirection.SideUp -> previousState.copy(dealsShown = event.deals.sortedBy { it.side })
-                    SortDirection.SideDown -> previousState.copy(dealsShown = event.deals.sortedByDescending { it.side })
+                    SortDirection.TimeUp -> previousState.copy(deals = event.deals.sortedBy { it.timeStamp })
+                    SortDirection.TimeDown -> previousState.copy(deals = event.deals.sortedByDescending { it.timeStamp })
+                    SortDirection.InstrumentUp -> previousState.copy(deals = event.deals.sortedBy { it.instrumentName })
+                    SortDirection.InstrumentDown -> previousState.copy(deals = event.deals.sortedByDescending { it.instrumentName })
+                    SortDirection.PriceUp -> previousState.copy(deals = event.deals.sortedBy { it.price })
+                    SortDirection.PriceDown -> previousState.copy(deals = event.deals.sortedByDescending { it.price })
+                    SortDirection.AmountUp -> previousState.copy(deals = event.deals.sortedBy { it.amount })
+                    SortDirection.AmountDown -> previousState.copy(deals = event.deals.sortedByDescending { it.amount })
+                    SortDirection.SideUp -> previousState.copy(deals = event.deals.sortedBy { it.side })
+                    SortDirection.SideDown -> previousState.copy(deals = event.deals.sortedByDescending { it.side })
                 }
             }
 
@@ -56,11 +56,11 @@ class MainViewModel : BaseViewModel<ViewState>() {
                 return if (dateSortBy) {
                     dateSortBy = !this.dateSortBy
                     sortOwner = SortDirection.TimeDown
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedByDescending { it.timeStamp })
+                    previousState.copy(deals = previousState.deals.sortedByDescending { it.timeStamp })
                 } else {
                     dateSortBy = !this.dateSortBy
                     sortOwner = SortDirection.TimeUp
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedBy { it.timeStamp })
+                    previousState.copy(deals = previousState.deals.sortedBy { it.timeStamp })
                 }
             }
 
@@ -68,11 +68,11 @@ class MainViewModel : BaseViewModel<ViewState>() {
                 return if (instrumentSortBy) {
                     instrumentSortBy = !this.instrumentSortBy
                     sortOwner = SortDirection.InstrumentDown
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedByDescending { it.instrumentName })
+                    previousState.copy(deals = previousState.deals.sortedByDescending { it.instrumentName })
                 } else {
                     instrumentSortBy = !this.instrumentSortBy
                     sortOwner = SortDirection.InstrumentUp
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedBy { it.instrumentName })
+                    previousState.copy(deals = previousState.deals.sortedBy { it.instrumentName })
                 }
             }
 
@@ -80,11 +80,11 @@ class MainViewModel : BaseViewModel<ViewState>() {
                 return if (priceSortBy) {
                     priceSortBy = !this.priceSortBy
                     sortOwner = SortDirection.PriceDown
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedByDescending { it.price })
+                    previousState.copy(deals = previousState.deals.sortedByDescending { it.price })
                 } else {
                     priceSortBy = !this.priceSortBy
                     sortOwner = SortDirection.PriceUp
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedBy { it.price })
+                    previousState.copy(deals = previousState.deals.sortedBy { it.price })
                 }
             }
 
@@ -92,11 +92,11 @@ class MainViewModel : BaseViewModel<ViewState>() {
                 return if (amountSortBy) {
                     amountSortBy = !this.amountSortBy
                     sortOwner = SortDirection.AmountDown
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedByDescending { it.amount })
+                    previousState.copy(deals = previousState.deals.sortedByDescending { it.amount })
                 } else {
                     amountSortBy = !this.amountSortBy
                     sortOwner = SortDirection.AmountUp
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedBy { it.amount })
+                    previousState.copy(deals = previousState.deals.sortedBy { it.amount })
                 }
             }
 
@@ -104,11 +104,11 @@ class MainViewModel : BaseViewModel<ViewState>() {
                 return if (sideSortBy) {
                     sideSortBy = !this.sideSortBy
                     sortOwner = SortDirection.PriceDown
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedByDescending { it.side })
+                    previousState.copy(deals = previousState.deals.sortedByDescending { it.side })
                 } else {
                     sideSortBy = !this.sideSortBy
                     sortOwner = SortDirection.PriceUp
-                    previousState.copy(dealsShown = previousState.dealsShown.sortedBy { it.side })
+                    previousState.copy(deals = previousState.deals.sortedBy { it.side })
                 }
             }
 

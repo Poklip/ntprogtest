@@ -10,11 +10,13 @@ import com.nttest.ntprogresstest.R
 class MainActivity : AppCompatActivity() {
 
     private val rvDeals: RecyclerView by lazy { findViewById(R.id.rvDeals) }
+
     private val tvSortByTime: TextView by lazy { findViewById(R.id.tvSortingDate) }
     private val tvSortByInstrument: TextView by lazy { findViewById(R.id.tvSortingInstrument) }
     private val tvSortByPrice: TextView by lazy { findViewById(R.id.tvSortingPrice) }
     private val tvSortByAmount: TextView by lazy { findViewById(R.id.tvSortingAmount) }
     private val tvSortBySide: TextView by lazy { findViewById(R.id.tvSortingSide) }
+
     private val viewModel = MainViewModel()
     private val adapter: DealsAdapter by lazy { DealsAdapter() }
 
@@ -44,6 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun render(viewState: ViewState) {
-        adapter.setData(viewState.dealsShown)
+        adapter.setData(viewState.deals)
     }
 }
