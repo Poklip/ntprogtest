@@ -1,4 +1,4 @@
-package com.nttest.ntprogresstest
+package com.nttest.ntprogresstest.data
 
 import android.os.Handler
 import android.os.Looper

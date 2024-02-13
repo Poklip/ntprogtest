@@ -1,6 +1,7 @@
-package com.nttest.ntprogresstest
+package com.nttest.ntprogresstest.ui
 
 import com.nttest.ntprogresstest.base.MyEvent
+import com.nttest.ntprogresstest.data.Server
 
 data class ViewState(
     val dealsShown: List<Server.Deal>,
@@ -17,5 +18,5 @@ sealed class UiEvent : MyEvent {
 
 sealed class DataEvent : MyEvent {
     object InitLoadDeals : DataEvent()
-    data class LoadDeals(val deals: List<Server.Deal>) : DataEvent()
+    data class LoadPacks(val deals: List<Server.Deal>) : DataEvent()
 }

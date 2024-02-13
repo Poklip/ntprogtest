@@ -1,11 +1,14 @@
-package com.nttest.ntprogresstest
+package com.nttest.ntprogresstest.ui
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nttest.ntprogresstest.R
+import com.nttest.ntprogresstest.data.Server
 import kotlin.math.roundToInt
 
 class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
@@ -27,38 +30,32 @@ class DealsAdapter : RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
         }
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_deal, viewGroup, false)
 
         return ViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // viewHolder.itemView.setOnClickListener{}
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         viewHolder.tvInstrumentName.text = dealsData[position].instrumentName
         viewHolder.tvPrice.text = "%.2f".format(dealsData[position].price.toFloat())
-        viewHolder.tvAmount.text = dealsData[position].amount.roundToInt().toString()
+        viewHolder.tvAmount.text = "Amount: ${dealsData[position].amount.roundToInt()}"
         viewHolder.tvTimeStamp.text = dealsData[position].timeStamp.toString()
         if (dealsData[position].side == Server.Deal.Side.SELL) {
-            viewHolder.tvPrice.setTextColor(Color.parseColor("#FF0000"))
+            viewHolder.tvPrice.setTextColor(Color.parseColor("#BB0000"))
         } else {
-            viewHolder.tvPrice.setTextColor(Color.parseColor("#00FF00"))
+            viewHolder.tvPrice.setTextColor(Color.parseColor("#009900"))
         }
+
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dealsData.size
 
     fun setData(deals: List<Server.Deal>) {
         dealsData = deals
         notifyDataSetChanged()
     }
-
 }
